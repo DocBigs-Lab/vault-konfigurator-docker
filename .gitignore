@@ -1,0 +1,5 @@
+vault/*
+!vault/.gitkeep
+do_druku/*
+!do_druku/.gitkeep
+.DS_Store

@@ -1,0 +1,31 @@
+# VAULT Konfigurator — Docker-Compose
+#
+# Build & Start:
+#   docker compose up -d --build
+#
+# Oberfläche:
+#   http://<host>:8766/konfigurator/index.html
+#
+# STL-Dateien in den Ordner ./vault legen (wird automatisch gemountet).
+
+services:
+  vault:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: vault-konfigurator:latest
+    container_name: vault-konfigurator
+    restart: unless-stopped
+    ports:
+      - "8766:8766"
+    volumes:
+      # Deine STL-Bibliothek (die von USSA Design gekauften Dateien)
+      - ./vault:/root/VAULT/vault
+      # Exportierte 3MF-Platten
+      - ./do_druku:/root/VAULT/do_druku
+    environment:
+      # Bind-Host für den Server (0.0.0.0 = von außen erreichbar)
+      - VAULT_BIND=0.0.0.0
+      # Sprache: de = Deutsch, en = Englisch, pl = Polnisch, auto = automatisch
+      - VAULT_LANG=de
+
