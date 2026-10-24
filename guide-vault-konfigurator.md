@@ -84,12 +84,10 @@ The VAULT Konfigurator is updated frequently. You can find new versions on the [
 The Docker image downloads the latest version while it is being built. Docker caches this step, so `docker compose up -d --build` alone does **not** fetch a new version. To update, run these commands in the project folder:
 
 ```bash
-git pull
 docker compose build --pull --no-cache
 docker compose up -d
 ```
 
-* `git pull` fetches changes to this Docker setup.
 * `--no-cache` forces Docker to download the latest configurator release again.
 * `--pull` also updates the Python base image.
 
@@ -99,6 +97,8 @@ docker compose logs vault | grep Konfigurator
 ```
 
 Your STL files in the `vault` folder and your print files in `do_druku` are kept.
+
+*Updating the Docker setup itself (optional):* If you got the repository with `git clone`, run `git pull` before the build to fetch changes to the Dockerfile, compose file and guides. If you downloaded it as a ZIP, the folder is not a Git repository and `git pull` reports `fatal: not a git repository`. In that case, just skip this step. It is not needed to get a new configurator version.
 
 *Without Docker Compose:* build the image with `docker build --pull --no-cache -t vault-konfigurator .`, remove the old container with `docker rm -f vault-konfigurator` and start it again with the `docker run` command above.
 

@@ -40,7 +40,7 @@ docker compose down
 The VAULT Konfigurator gets frequent releases. The image downloads the latest release **at build time**, but Docker caches that step, so a plain `--build` keeps the old version. To update, rebuild without cache:
 
 ```bash
-git pull                                   # get changes to this Docker setup
+git pull                                   # optional, only in a git clone: get changes to this Docker setup
 docker compose build --pull --no-cache     # fetch the latest configurator release
 docker compose up -d
 docker compose logs vault | grep Konfigurator   # shows the running version
