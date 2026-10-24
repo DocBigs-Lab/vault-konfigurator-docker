@@ -2,6 +2,11 @@
 
 Docker image for the [VAULT Konfigurator](https://github.com/rawel2/Vault-Konfigurator-wydania) — a local web UI for configuring USSA Design VAULT storage towers.
 
+## Step-by-step guide
+
+- 🇬🇧 [English guide](guide-vault-konfigurator.md)
+- 🇩🇪 [Deutsche Anleitung](anleitung-vault-konfigurator.md)
+
 ## Quick start
 
 ```bash
@@ -69,6 +74,8 @@ Includes support for: Bambu Lab H2S/X2D, Elegoo Centauri Carbon, **LightMake L4*
 | `Dockerfile` | Image definition — pulls latest release from GitHub |
 | `docker-entrypoint.sh` | Starts the server headless in the container |
 | `docker-compose.yml` | Compose config with ports and volumes |
+| `guide-vault-konfigurator.md` | Step-by-step guide (English) |
+| `anleitung-vault-konfigurator.md` | Step-by-step guide (German) |
 
 ## License
 

@@ -1,0 +1,76 @@
+# Guide: Running the VAULT Konfigurator with Docker
+
+This guide explains how to install and run the **VAULT Konfigurator** (a tool for configuring USSA Design VAULT storage towers for 3D printing) using Docker.
+
+---
+
+## Requirements
+1. **Docker & Docker Compose** must be installed and running on your system.
+2. You need the copyrighted **VAULT STL files** from USSA Design. For legal reasons they are not included in the repository.
+
+---
+
+## Step-by-step guide
+
+### 1. Download the repository (clone)
+Open a terminal (Command Prompt, PowerShell or a Linux terminal) and run the following commands to download the project and change into its directory:
+
+```bash
+git clone https://github.com/DocBigs-Lab/vault-konfigurator-docker.git
+cd vault-konfigurator-docker
+```
+*(Alternatively, you can download the repository from GitHub as a ZIP archive and extract it.)*
+
+### 2. Create the folders and add the STL files
+The configurator needs two local folders in the same directory:
+* `vault`: for your purchased STL files.
+* `do_druku`: this is where the tool saves the finished, configured print files.
+
+Create the folders with this command:
+```bash
+mkdir -p vault do_druku
+```
+**Important:** Now copy all your purchased **VAULT STL files** directly into the newly created `vault` folder.
+
+### 3. Start the Docker container (locally on your PC)
+If you run the configurator on the same PC you use the browser on, start Docker Compose with the following command:
+
+```bash
+docker compose up -d --build
+```
+The `-d` flag makes the containers run in the background (detached).
+
+### 4. Open the user interface
+Once the container has started successfully, open your web browser and go to:
+
+👉 **http://localhost:8766/konfigurator/index.html**
+
+*Note on language:* The interface supports German, English and Polish. It detects your language automatically; you can also switch it manually in the top-left corner.
+
+---
+
+## Advanced use: running on a NAS or home server
+
+If the Docker container runs on a separate device on your network (e.g. a Synology NAS, Unraid or a Linux server), access is not allowed by default. In that case, use the following manual `docker run` command instead of `docker compose`:
+
+```bash
+docker run -it --rm -p 8766:8766 \
+  -e VAULT_BIND=0.0.0.0 \
+  -e VAULT_HOSTS=YOUR_SERVER_IP:8766 \
+  -v vault_data:/root/VAULT \
+  -v "$(pwd)/vault:/root/VAULT/vault:ro" \
+  vault-konfigurator
+```
+
+### Important parameters:
+* Replace `YOUR_SERVER_IP` with the actual IP address of your server on the network (e.g. `192.168.1.50`).
+* **Security note:** With `VAULT_BIND=0.0.0.0`, anyone on your local network can access the configurator without logging in. That is perfectly fine for home use, but never forward this port to the outside (internet) in your router!
+
+---
+
+## Stopping the container
+If you started the tool with Docker Compose and want to stop it, run the following command in the project folder:
+
+```bash
+docker compose down
+```
