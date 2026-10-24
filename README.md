@@ -1,3 +1,14 @@
+<p align="center">
+  <a href="https://docbigs-lab.de">
+    <img src="https://raw.githubusercontent.com/DocBigs-Lab/SML-Meter-Gateway/main/docs/assets/docbigslab_logo.svg" alt="DocBigsLab Logo" width="200">
+  </a>
+</p>
+<p align="center">
+  <a href="https://docbigs-lab.de">https://docbigs-lab.de</a>
+</p>
+
+
+
 # VAULT Konfigurator — Docker
 
 Docker image for the [VAULT Konfigurator](https://github.com/rawel2/Vault-Konfigurator-wydania) — a local web UI for configuring USSA Design VAULT storage towers.
