@@ -68,6 +68,33 @@ docker run -it --rm -p 8766:8766 \
 
 ---
 
+## Auf eine neue Version aktualisieren
+
+Der VAULT Konfigurator wird häufig aktualisiert. Neue Versionen findest du auf der [Release-Seite](https://github.com/rawel2/Vault-Konfigurator-wydania/releases).
+
+Das Docker-Image lädt die neueste Version beim Bauen herunter. Docker speichert diesen Schritt im Cache, deshalb holt `docker compose up -d --build` allein **keine** neue Version. Zum Aktualisieren führst du im Projektordner diese Befehle aus:
+
+```bash
+git pull
+docker compose build --pull --no-cache
+docker compose up -d
+```
+
+* `git pull` holt Änderungen an diesem Docker-Setup.
+* `--no-cache` sorgt dafür, dass Docker das neueste Release des Konfigurators neu herunterlädt.
+* `--pull` aktualisiert zusätzlich das Python-Basis-Image.
+
+So prüfst du, welche Version läuft:
+```bash
+docker compose logs vault | grep Konfigurator
+```
+
+Deine STL-Dateien im Ordner `vault` und die Druckdateien in `do_druku` bleiben erhalten.
+
+*NAS/Server mit `docker run`:* Baue das Image mit `docker build --pull --no-cache -t vault-konfigurator .`, stoppe den alten Container und starte ihn mit dem `docker run`-Befehl von oben neu.
+
+---
+
 ## Container stoppen
 Wenn du das Tool via Docker Compose gestartet hast und es beenden möchtest, nutze folgenden Befehl im Projektordner:
 

@@ -35,6 +35,23 @@ docker compose up -d --build
 docker compose down
 ```
 
+## Updating
+
+The VAULT Konfigurator gets frequent releases. The image downloads the latest release **at build time**, but Docker caches that step, so a plain `--build` keeps the old version. To update, rebuild without cache:
+
+```bash
+git pull                                   # get changes to this Docker setup
+docker compose build --pull --no-cache     # fetch the latest configurator release
+docker compose up -d
+docker compose logs vault | grep Konfigurator   # shows the running version
+```
+
+Without compose: `docker build --pull --no-cache -t vault-konfigurator .`
+
+Your STL files in `./vault` and exports in `./do_druku` are bind mounts and survive the update.
+
+Releases: https://github.com/rawel2/Vault-Konfigurator-wydania/releases
+
 ## STL files
 
 The VAULT STL files (purchased from [USSA Design](https://www.ussadesign.com/pages/vault)) go into the mounted volume:
