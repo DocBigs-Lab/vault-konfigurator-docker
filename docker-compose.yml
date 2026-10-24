@@ -26,6 +26,9 @@ services:
     environment:
       # Bind-Host für den Server (0.0.0.0 = von außen erreichbar)
       - VAULT_BIND=0.0.0.0
+      # Zusätzlich erlaubte Hosts, nötig beim Zugriff über NAS/Server-IP
+      # (z. B. 192.168.1.50:8766; mehrere durch Komma getrennt)
+      - VAULT_HOSTS=
       # Sprache: de = Deutsch, en = Englisch, pl = Polnisch, auto = automatisch
       - VAULT_LANG=de
 

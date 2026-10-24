@@ -110,3 +110,5 @@ Includes support for: Bambu Lab H2S/X2D, Elegoo Centauri Carbon, **LightMake L4*
 The VAULT Konfigurator is developed by [rawel2](https://github.com/rawel2) under the [MIT license](https://github.com/rawel2/Vault-Konfigurator-wydania/blob/main/LICENSE). STL files are copyrighted by [USSA Design](https://www.ussadesign.com/pages/vault) and are not included here.
 
 This Docker image is a community project — not affiliated with rawel2 or USSA Design.
+
+The Docker setup in this repository (Dockerfile, scripts, guides) is released under the [MIT license](LICENSE).

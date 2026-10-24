@@ -51,14 +51,23 @@ Once the container has started successfully, open your web browser and go to:
 
 ## Advanced use: running on a NAS or home server
 
-If the Docker container runs on a separate device on your network (e.g. a Synology NAS, Unraid or a Linux server), access is not allowed by default. In that case, use the following manual `docker run` command instead of `docker compose`:
+If the Docker container runs on a separate device on your network (e.g. a Synology NAS, Unraid or a Linux server), access via that device's IP address is not allowed by default. Add the address to `VAULT_HOSTS` in `docker-compose.yml`:
+
+```yaml
+      - VAULT_HOSTS=YOUR_SERVER_IP:8766
+```
+
+Then start the container as in step 3 with `docker compose up -d --build` and open `http://YOUR_SERVER_IP:8766/konfigurator/index.html` in your browser.
+
+**Without Docker Compose:** If your system has no Compose, build the image yourself and start it with `docker run`:
 
 ```bash
-docker run -it --rm -p 8766:8766 \
+docker build -t vault-konfigurator .
+docker run -d --name vault-konfigurator --restart unless-stopped -p 8766:8766 \
   -e VAULT_BIND=0.0.0.0 \
   -e VAULT_HOSTS=YOUR_SERVER_IP:8766 \
-  -v vault_data:/root/VAULT \
-  -v "$(pwd)/vault:/root/VAULT/vault:ro" \
+  -v "$(pwd)/vault:/root/VAULT/vault" \
+  -v "$(pwd)/do_druku:/root/VAULT/do_druku" \
   vault-konfigurator
 ```
 
@@ -91,7 +100,7 @@ docker compose logs vault | grep Konfigurator
 
 Your STL files in the `vault` folder and your print files in `do_druku` are kept.
 
-*NAS/server with `docker run`:* build the image with `docker build --pull --no-cache -t vault-konfigurator .`, stop the old container and start it again with the `docker run` command above.
+*Without Docker Compose:* build the image with `docker build --pull --no-cache -t vault-konfigurator .`, remove the old container with `docker rm -f vault-konfigurator` and start it again with the `docker run` command above.
 
 ---
 
