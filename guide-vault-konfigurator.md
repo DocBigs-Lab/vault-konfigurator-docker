@@ -2,6 +2,9 @@
 
 This guide explains how to install and run the **VAULT Konfigurator** (a tool for configuring USSA Design VAULT storage towers for 3D printing) using Docker.
 
+> [!IMPORTANT]
+> **There is now an official Docker setup.** Since release 1.1.20 the VAULT Konfigurator includes its own Docker files (folder `docker/` in [the release package](https://github.com/rawel2/Vault-Konfigurator-wydania/releases/latest)), maintained by the developer. It keeps your settings and caches across updates and also explains Synology. **Please use that one.** This guide is no longer updated. How to switch over is described in the [README](README.md).
+
 ---
 
 ## Requirements

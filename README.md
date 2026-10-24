@@ -13,6 +13,16 @@
 
 Docker image for the [VAULT Konfigurator](https://github.com/rawel2/Vault-Konfigurator-wydania) — a local web UI for configuring USSA Design VAULT storage towers.
 
+> [!IMPORTANT]
+> **This project has been adopted upstream.** Since release 1.1.20 the VAULT Konfigurator ships its own Docker setup (folder `docker/` in [the release package](https://github.com/rawel2/Vault-Konfigurator-wydania/releases/latest)), maintained by rawel2 and based on this project. It keeps settings, geometry cache and 3D meshes in a volume, so an update no longer deletes them, and it includes instructions for Synology. **Please use the upstream setup.** This repository is no longer developed.
+>
+> **Switching over** (the folder names differ):
+> 1. Stop the old container in this folder: `docker compose down`
+> 2. Download `vault-konfigurator.zip` from the [latest release](https://github.com/rawel2/Vault-Konfigurator-wydania/releases/latest) and copy the four files from `docker/` (`Dockerfile`, `docker-entrypoint.sh`, `docker-compose.yml`, `.dockerignore`) into a project folder.
+> 3. In that folder: put your STL library into `vault2/` (was `vault/`), keep or move `do_druku/`, and create an empty `konfigurator/` folder.
+> 4. In `docker-compose.yml` set `VAULT_HOSTS` to the address you open the configurator with, and for German `LANG: de_DE.UTF-8` and `TZ: Europe/Berlin` (default is Polish).
+> 5. `docker compose up -d --build`
+
 ## Step-by-step guide
 
 - 🇬🇧 [English guide](guide-vault-konfigurator.md)

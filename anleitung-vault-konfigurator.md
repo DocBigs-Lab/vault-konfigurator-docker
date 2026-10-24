@@ -2,6 +2,16 @@
 
 Diese Anleitung erklärt, wie du den **VAULT Konfigurator** (ein Tool zur Konfiguration von USSA Design VAULT Lagertürmen für den 3D-Druck) mithilfe von Docker installierst und ausführst.
 
+> [!IMPORTANT]
+> **Es gibt jetzt ein offizielles Docker-Setup.** Seit Version 1.1.20 liefert der VAULT Konfigurator eigene Docker-Dateien mit (Ordner `docker/` im [Release-Paket](https://github.com/rawel2/Vault-Konfigurator-wydania/releases/latest)), gepflegt vom Entwickler selbst. Es behält Einstellungen und Caches bei Updates und erklärt auch die Einrichtung auf Synology. **Bitte nutze dieses Setup.** Diese Anleitung wird nicht mehr aktualisiert.
+>
+> **Umstieg** (die Ordnernamen sind anders):
+> 1. Alten Container in diesem Ordner stoppen: `docker compose down`
+> 2. `vault-konfigurator.zip` aus dem [neuesten Release](https://github.com/rawel2/Vault-Konfigurator-wydania/releases/latest) laden und die vier Dateien aus `docker/` (`Dockerfile`, `docker-entrypoint.sh`, `docker-compose.yml`, `.dockerignore`) in einen Projektordner kopieren.
+> 3. Dort die STL-Bibliothek in den Ordner `vault2/` legen (bisher `vault/`), `do_druku/` übernehmen und einen leeren Ordner `konfigurator/` anlegen.
+> 4. In der `docker-compose.yml` bei `VAULT_HOSTS` die Adresse eintragen, unter der du den Konfigurator öffnest. Für Deutsch außerdem `LANG: de_DE.UTF-8` und `TZ: Europe/Berlin` setzen (Standard ist Polnisch).
+> 5. `docker compose up -d --build`
+
 ---
 
 ## Voraussetzungen
